@@ -17,6 +17,8 @@ public class Camera : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //cubo.transform.position = new Vector2(Screen.height / 2, Screen.width / 2);
+
         WebCamDevice[] cam_devices = WebCamTexture.devices;
 
         cam_texture = new WebCamTexture(cam_devices[0].name);
@@ -30,7 +32,10 @@ public class Camera : MonoBehaviour
     void Update()
     {
         
-        pixelColor = cam_texture.GetPixel(50,50);
+        pixelColor = cam_texture.GetPixel(Screen.height/2, Screen.width/2);
+
+
+        
 
         strHexColor = ColorUtility.ToHtmlStringRGB(pixelColor);
         strRGBColor = toStringRGB(pixelColor);
@@ -39,7 +44,8 @@ public class Camera : MonoBehaviour
         texto.text =
             "Hex: " + strHexColor +
             "<br>RGB: " + strRGBColor + 
-            "<br>HSV: " + strHSVColor;
+            "<br>HSV: " + strHSVColor + 
+            " sdfsdf " + (Screen.width / 2) + " " + (Screen.height/2);
         Debug.Log(
             "Hex: " + strHexColor + 
             " RGB: " + strRGBColor +
@@ -48,6 +54,15 @@ public class Camera : MonoBehaviour
         cubo.GetComponent<Renderer>().material.color = pixelColor;
     }
 
+
+
+
+
+
+
+
+
+    //-------------- Extension functions
     string toStringHSV(Color color) // Convert to extension function
     {
         int conversionFactH, conversionFactSV;
